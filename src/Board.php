@@ -3,6 +3,7 @@ require_once('color.php');
 require_once('IFigure.php');
 require_once('Pawn.php');
 require_once('Rook.php');
+require_once('Knight.php');
 
 class Board {
     private Color $player = Color::White;
@@ -33,6 +34,15 @@ class Board {
                     $row,
                     $col,
                     new Rook(
+                        $row === 0 ? Color::White : Color::Black
+                    )
+                );
+            }
+            foreach ([1, 6] as $col) {
+                $this->setItem(
+                    $row,
+                    $col,
+                    new Knight(
                         $row === 0 ? Color::White : Color::Black
                     )
                 );
@@ -107,7 +117,9 @@ class Board {
         if ($this->getPlayer() !== $item->getColor()) {
             throw new Exception('Сейчас не ваш ход');
         }
-        # проверить есть ли в пункте назначения фигура
+        if ($from_col == $to_col && $from_row == $to_row) {
+            throw new Exception('Мы топчимся на месте');
+        }
         $opponent = $this->getItem($to_row, $to_col);
         if (!$opponent) {
             if (!$item->canMove($from_row, $from_col, $to_row, $to_col, $this)) {

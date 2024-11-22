@@ -7,7 +7,7 @@ class Queen extends Figure {
 
 
     public function canMove(int $from_row, int $from_col, int $to_row, int $to_col, Board $board): bool {
-        // Ферзь может ходить как по горизонтали/вертикали, так и по диагонали
+        // Королева может ходить как по горизонтали/вертикали, так и по диагонали
         $row_diff = abs($to_row - $from_row);
         $col_diff = abs($to_col - $from_col);
 
@@ -26,7 +26,7 @@ class Queen extends Figure {
     }
 
     /**
-     * Проверяет путь по горизонтальной или вертикальной линии
+     * Проверка пути по горизонтали или вертикали
      */
     protected function checkStraightPath(
         int $from_row,
@@ -59,7 +59,7 @@ class Queen extends Figure {
     }
 
     /**
-     * Проверяет путь по диагонали
+     * Проверка пути по диагонали
      */
     protected function checkDiagonalPath(
         int $from_row,

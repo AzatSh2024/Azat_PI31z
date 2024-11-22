@@ -14,6 +14,7 @@ abstract class Figure implements IFigure {
     private Color $color;
     protected array $icon = [];
 
+
     public function __construct(Color $color){
         $this->color = $color;
     }
